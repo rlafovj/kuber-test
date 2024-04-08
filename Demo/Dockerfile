@@ -1,7 +1,7 @@
 FROM gradle:jdk17-alpine AS builder
 COPY --chown=gradle:gradle . /gradle/
 WORKDIR /gradle
-RUN ./gradlew build --no-daemon
+RUN gradle build --no-daemon
 
 FROM openjdk:17-alpine
 RUN mkdir /app
