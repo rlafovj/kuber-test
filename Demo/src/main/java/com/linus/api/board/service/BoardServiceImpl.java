@@ -30,7 +30,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardDTO> findAll(PageRequestVO vo) {
+    public List<BoardDTO> findAll() {
         //return repo.findAll(vo);
         return null;
     }

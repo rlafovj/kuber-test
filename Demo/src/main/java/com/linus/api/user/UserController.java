@@ -5,7 +5,7 @@ import com.linus.api.common.component.MessengerVO;
 import com.linus.api.user.model.User;
 import com.linus.api.user.model.UserDTO;
 import com.linus.api.user.repository.UserRepository;
-import com.linus.api.user.service.UserServiceImpl;
+import com.linus.api.user.service.UserService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
@@ -27,15 +27,15 @@ import java.util.*;
 @Slf4j
 
 public class UserController {
-    private final UserServiceImpl service;
+    private final UserService service;
     private final UserRepository repo;
 
     // -------------------- Command ---------------------------
 
-    @PostMapping(path = "")
-    public ResponseEntity<MessengerVO> save(@RequestBody Map<String, UserDTO> param) {
+    @PostMapping(path = "/join")
+    public ResponseEntity<MessengerVO> save(@RequestBody UserDTO param) {
         log.info("입력받은 정보 : {}", param );
-        // User newUser = service.save(param);
+        service.save(param);
         return ResponseEntity.ok(new MessengerVO());
 
     }
@@ -43,33 +43,29 @@ public class UserController {
     // -------------------- Query ---------------------------
 
     @PostMapping(path = "/login")
-    public ResponseEntity<MessengerVO> login(@RequestBody Map<?, ?> paramap) {
-        Map<String, MessengerVO> response = new HashMap<>();
-
-        String username = (String)paramap.get("username");
-
+    public ResponseEntity<MessengerVO> login(@RequestBody UserDTO param) {
         //User user = service.findByUsername(username).orElse(null);
 
-        return ResponseEntity.ok(new MessengerVO());
+        return ResponseEntity.ok(service.login(param));
     }
 
 
-    @GetMapping("")
+    @GetMapping("list")
     public ResponseEntity<List<UserDTO>> findAll(Pageable pageable){
 
         return ResponseEntity.ok(new ArrayList<UserDTO>());
     }
 
-    @GetMapping(path="/{id}")
+    @GetMapping(path="/detail")
 
-    public ResponseEntity<Optional<UserDTO>> findUserById(@PathVariable Long id) {
+    public ResponseEntity<Optional<UserDTO>> findUserById(@RequestParam Long id) {
 
         return ResponseEntity.ok(Optional.of(new UserDTO()));
     }
 
 
 
-    @PutMapping("/password")
+    @PutMapping("/modify")
     public ResponseEntity<MessengerVO> updatePassword(@RequestBody Map<?, ?> paramap) {
 
         return ResponseEntity.ok(new MessengerVO());
@@ -83,21 +79,21 @@ public class UserController {
     }
 
 
-    @GetMapping("/api/user-list")
+    @GetMapping("/user-list")
     public ResponseEntity<MessengerVO> getUserList() {
 
         return ResponseEntity.ok(new MessengerVO());
     }
 
 
-    @GetMapping("/api/find-userbyname")
+    @GetMapping("/find-userbyname")
     public ResponseEntity<MessengerVO> findUserByName(@RequestBody Map<?, ?> paramap) {
         return ResponseEntity.ok(new MessengerVO());
 
     }
 
 
-    @GetMapping("/api/find-userbyjob")
+    @GetMapping("/find-userbyjob")
     public ResponseEntity<MessengerVO> findUserByJob(@RequestBody Map<?, ?> paramap) {
         return ResponseEntity.ok(new MessengerVO());
     }
@@ -109,20 +105,20 @@ public class UserController {
 
     }
 
-    @GetMapping("/api/get-one")
+    @GetMapping("/get-one")
     public ResponseEntity<MessengerVO> getOne(@RequestBody Map<?, ?> paramap) throws SQLException {
         return ResponseEntity.ok(new MessengerVO());
     }
 
 
-    @GetMapping("/api/find-users")
+    @GetMapping("/find-users")
     public ResponseEntity<MessengerVO> findUsers() throws SQLException {
 
         return ResponseEntity.ok(new MessengerVO());
     }
 
 
-    @GetMapping("/api/get-user")
+    @GetMapping("/get-user")
     public ResponseEntity<MessengerVO> getUser(@RequestBody Map<?, ?> paramap) throws SQLException {
 
         return ResponseEntity.ok(new MessengerVO());

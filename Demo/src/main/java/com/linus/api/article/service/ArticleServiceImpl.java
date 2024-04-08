@@ -18,17 +18,18 @@ public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepository repo;
 
     @Override
-    public ArticleDTO save(ArticleDTO t) {
-        return entityToDto(Optional.of(repo.save(dtoToEntity(t))));
+    public MessengerVO save(ArticleDTO t) {
+        entityToDto(repo.save(dtoToEntity(t)));
+        return null;
     }
 
     @Override
-    public void deleteById(Long id) {
+    public MessengerVO deleteById(Long id) {
         repo.deleteById(id);
     }
 
     @Override
-    public List<ArticleDTO> findAll(PageRequestVO vo) {
+    public List<ArticleDTO> findAll() {
         //return repo.findAll(vo);
         return null;
     }

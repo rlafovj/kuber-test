@@ -36,7 +36,7 @@ public class ArticleController {
   }
   @GetMapping("")
   public ResponseEntity<MessengerVO> findAll(PageRequestVO vo) throws SQLException {
-    service.findAll(null);
+    service.findAll();
     return ResponseEntity.ok(new MessengerVO());
   }
   @GetMapping("/{id}")

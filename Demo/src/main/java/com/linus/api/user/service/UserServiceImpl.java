@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -19,24 +20,37 @@ public class UserServiceImpl implements UserService {
 
 
   @Override
-  public UserDTO save(UserDTO dto) {
-    return entityToDto(Optional.of((repository.save(dtoToEntity(dto)))));
+  public MessengerVO save(UserDTO dto) {
+    entityToDto(repository.save(dtoToEntity(dto)));
+    return new MessengerVO();
   }
 
   @Override
-  public void deleteById(Long id) {
+  public MessengerVO deleteById(Long id) {
     repository.deleteById(id);
+    return new MessengerVO();
   }
 
   @Override
-  public List<UserDTO> findAll(PageRequestVO vo) {
+  public MessengerVO modify(UserDTO userDTO) {
+    return null;
+  }
+
+  @Override
+  public List<UserDTO> findAll() {
     //return repository.findAll(vo);
     return null;
   }
 
   @Override
   public Optional<UserDTO> findById(Long id) {
-    return Optional.of(entityToDto(repository.findById(id)));
+    //Optional.of(entityToDto(repository.findById(id)));
+    return null;
+  }
+
+  @Override
+  public MessengerVO login(UserDTO param) {
+    throw new UnsupportedOperationException("Unimplemented method 'login'");
   }
 
   @Override
@@ -50,16 +64,17 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public String updatePassword(User user) {
-    throw new UnsupportedOperationException("Unimplemented method 'updatePassword'");
+  public List<UserDTO> findUsersByName(String name) {
+    throw new UnsupportedOperationException("Unimplemented method 'findUsersByName'");
   }
 
   @Override
-  public List<?> findUserByName(String name) {
-    throw new UnsupportedOperationException("Unimplemented method 'findUsersByName'");  }
+  public List<UserDTO> findUsersByJob(String job) {
+    throw new UnsupportedOperationException("Unimplemented method 'findUsersByJob'");
+  }
 
   @Override
-  public List<?> findUserByJob(String job) {
-    throw new UnsupportedOperationException("Unimplemented method 'findUsersByJob'");
+  public Optional<User> findUserByUsername(String username) {
+    return repository.findByUsername(username);
   }
 }

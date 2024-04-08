@@ -17,6 +17,10 @@ spring:
             non_contextual_creation: true
         format_sql: true
     show-sql: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql
 logging:
   level:
     org:
