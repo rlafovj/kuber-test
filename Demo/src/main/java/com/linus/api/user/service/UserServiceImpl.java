@@ -16,18 +16,18 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-  private final UserRepository repository;
+  private final UserRepository repo;
 
 
   @Override
   public MessengerVO save(UserDTO dto) {
-    entityToDto(repository.save(dtoToEntity(dto)));
+    entityToDto(repo.save(dtoToEntity(dto)));
     return new MessengerVO();
   }
 
   @Override
   public MessengerVO deleteById(Long id) {
-    repository.deleteById(id);
+    repo.deleteById(id);
     return new MessengerVO();
   }
 
@@ -38,13 +38,13 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public List<UserDTO> findAll() {
-    //return repository.findAll(vo);
+    //return repo.findAll(vo);
     return null;
   }
 
   @Override
   public Optional<UserDTO> findById(Long id) {
-    //Optional.of(entityToDto(repository.findById(id)));
+    //Optional.of(entityToDto(repo.findById(id)));
     return null;
   }
 
@@ -55,12 +55,12 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public long count() {
-    return repository.count();
+    return repo.count();
   }
 
   @Override
   public boolean existsById(Long id) {
-    return repository.existsById(id);
+    return repo.existsById(id);
   }
 
   @Override
@@ -75,6 +75,6 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public Optional<User> findUserByUsername(String username) {
-    return repository.findByUsername(username);
+    return repo.findByUsername(username);
   }
 }

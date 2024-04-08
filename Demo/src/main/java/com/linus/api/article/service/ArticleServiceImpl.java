@@ -18,14 +18,20 @@ public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepository repo;
 
     @Override
-    public MessengerVO save(ArticleDTO t) {
-        entityToDto(repo.save(dtoToEntity(t)));
-        return null;
+    public MessengerVO save(ArticleDTO dto) {
+        entityToDto(Optional.of(repo.save(dtoToEntity(dto))));
+        return new MessengerVO();
     }
 
     @Override
     public MessengerVO deleteById(Long id) {
         repo.deleteById(id);
+      return new MessengerVO();
+    }
+
+    @Override
+    public MessengerVO modify(ArticleDTO dto) {
+        return null;
     }
 
     @Override

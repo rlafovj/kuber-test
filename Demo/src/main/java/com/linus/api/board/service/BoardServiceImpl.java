@@ -1,17 +1,12 @@
 package com.linus.api.board.service;
 
-import com.linus.api.article.model.ArticleDTO;
-import com.linus.api.board.model.Board;
 import com.linus.api.board.model.BoardDTO;
 import com.linus.api.board.repository.BoardRepository;
 import com.linus.api.common.component.MessengerVO;
-import com.linus.api.common.component.PageRequestVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -20,13 +15,20 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository repo;
 
     @Override
-    public BoardDTO save(BoardDTO dto) {
-        return entityToDto(Optional.of(repo.save(dtoToEntity(dto))));
+    public MessengerVO save(BoardDTO dto) {
+        entityToDto(Optional.of(repo.save(dtoToEntity(dto))));
+        return new MessengerVO();
     }
 
     @Override
-    public void deleteById(Long id) {
+    public MessengerVO deleteById(Long id) {
         repo.deleteById(id);
+        return new MessengerVO();
+    }
+
+    @Override
+    public MessengerVO modify(BoardDTO boardDTO) {
+        return null;
     }
 
     @Override

@@ -4,9 +4,11 @@ import com.linus.api.article.model.ArticleDTO;
 import com.linus.api.article.service.ArticleService;
 import com.linus.api.common.component.MessengerVO;
 import com.linus.api.common.component.PageRequestVO;
+import com.linus.api.user.model.UserDTO;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +23,14 @@ import java.util.Map;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class ArticleController {
   private final ArticleService service;
 
   @PostMapping("")
-  public ResponseEntity<MessengerVO> save(PageRequestVO vo) throws SQLException {
-    service.save(null);
+  public ResponseEntity<MessengerVO> save(@RequestBody ArticleDTO param) {
+    log.info("입력받은 정보 : {}", param );
+    service.save(param);
     return ResponseEntity.ok(new MessengerVO());
   }
   @DeleteMapping("/{id}")
