@@ -33,7 +33,8 @@ public class Board extends BaseEntity {
     private String boardType;
 
     @Builder(builderMethodName = "builder")
-    public Board(String boardName, String boardType) {
+    public Board(Long id, String boardName, String boardType) {
+        this.id = id;
         this.boardName = boardName;
         this.boardType = boardType;
     }

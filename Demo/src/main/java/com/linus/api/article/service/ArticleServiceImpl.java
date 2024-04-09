@@ -36,8 +36,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<ArticleDTO> findAll() {
-        //return repo.findAll(vo);
-        return null;
+        return repo.findAll().stream().map(i->entityToDto(Optional.ofNullable(i))).toList();
     }
 
     @Override

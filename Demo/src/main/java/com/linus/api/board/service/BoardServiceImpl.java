@@ -33,8 +33,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public List<BoardDTO> findAll() {
-        //return repo.findAll(vo);
-        return null;
+        return repo.findAll().stream().map(i->entityToDto(Optional.ofNullable(i))).toList();
     }
 
     @Override

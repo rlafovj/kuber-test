@@ -9,7 +9,7 @@ services:
       - ~/docker/mysql/var/log/mysql:/var/log/mysql
     environment:
       - MYSQL_DATABASE=demodb
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=password
       - MYSQL_ROOT_HOST=%
     command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
     ports:
@@ -22,7 +22,7 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://demo-container:3306/demodb
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_PASSWORD: password
     ports:
       - "8080:8080"
     depends_on:

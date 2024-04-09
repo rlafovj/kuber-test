@@ -17,7 +17,7 @@ public class ArticleDTO {
   private Long id;
   private String title;
   private String content;
-  private String registerDate;
+//  private String registerDate;
   private Long writerId;
   private Long boardId;
 }

@@ -50,10 +50,10 @@ public class UserController {
     }
 
 
-    @GetMapping("list")
-    public ResponseEntity<List<UserDTO>> findAll(Pageable pageable){
+    @GetMapping("/list")
+    public ResponseEntity<List<UserDTO>> findAll() throws SQLException {
 
-        return ResponseEntity.ok(new ArrayList<UserDTO>());
+        return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping(path="/detail")

@@ -22,6 +22,7 @@ import java.util.Map;
         @ApiResponse(responseCode = "404", description = "Customer not found")})
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
+@RequestMapping(path = "/api/articles")
 @RequiredArgsConstructor
 @Slf4j
 public class ArticleController {
@@ -38,10 +39,9 @@ public class ArticleController {
     service.deleteById(0L);
     return ResponseEntity.ok(new MessengerVO());
   }
-  @GetMapping("")
-  public ResponseEntity<MessengerVO> findAll(PageRequestVO vo) throws SQLException {
-    service.findAll();
-    return ResponseEntity.ok(new MessengerVO());
+  @GetMapping("/list")
+  public ResponseEntity<List<ArticleDTO>> findAll() throws SQLException {
+    return ResponseEntity.ok(service.findAll());
   }
   @GetMapping("/{id}")
   public ResponseEntity<MessengerVO> findById(PageRequestVO vo) throws SQLException {
@@ -59,7 +59,7 @@ public class ArticleController {
     return ResponseEntity.ok(new MessengerVO());
   }
 
-//  @GetMapping("/api/all-articles")
+//  @GetMapping("/api/articles")
 //  public Map<?,?> findAll() throws SQLException{
 //    Map<String, Object> map = new HashMap<>();
 //    map.put("message", "SUCCESS");
