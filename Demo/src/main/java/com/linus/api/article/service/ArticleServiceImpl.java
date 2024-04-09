@@ -19,7 +19,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public MessengerVO save(ArticleDTO dto) {
-        entityToDto(Optional.of(repo.save(dtoToEntity(dto))));
+        entityToDto(repo.save(dtoToEntity(dto)));
         return new MessengerVO();
     }
 
@@ -36,12 +36,13 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<ArticleDTO> findAll() {
-        return repo.findAll().stream().map(i->entityToDto(Optional.ofNullable(i))).toList();
+        return repo.findAll().stream().map(i->entityToDto(i)).toList();
     }
 
     @Override
     public Optional<ArticleDTO> findById(Long id) {
-        return Optional.of(entityToDto(repo.findById(id)));
+        return null;
+        //Optional.of(entityToDto(repo.findById(id)));
     }
 
     @Override

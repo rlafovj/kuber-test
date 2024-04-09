@@ -40,7 +40,7 @@ public class ArticleController {
     return ResponseEntity.ok(new MessengerVO());
   }
   @GetMapping("/list")
-  public ResponseEntity<List<ArticleDTO>> findAll() throws SQLException {
+  public ResponseEntity<List<ArticleDTO>> findAll(){
     return ResponseEntity.ok(service.findAll());
   }
   @GetMapping("/{id}")

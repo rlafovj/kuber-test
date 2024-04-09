@@ -26,7 +26,7 @@ import java.util.List;
 public class BoardController {
     private final BoardService service;
 
-    @GetMapping("/api/boards")
+    @GetMapping("list")
     public ResponseEntity<List<BoardDTO>> findAll() throws SQLException {
         return ResponseEntity.ok(service.findAll());
     }

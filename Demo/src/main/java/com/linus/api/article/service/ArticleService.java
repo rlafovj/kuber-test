@@ -10,15 +10,18 @@ import java.util.*;
 public interface ArticleService extends CommandService<ArticleDTO>, QueryService<ArticleDTO> {
 
   default Article dtoToEntity(ArticleDTO dto){
-
     return Article.builder()
+            .id(dto.getId())
+            .title(dto.getTitle())
             .content(dto.getContent())
             .build();
   }
 
-  default ArticleDTO entityToDto(Optional<Article> optional){
-    return optional.map(article -> ArticleDTO.builder()
-            .content(article.getContent())
-            .build()).orElse(null);
+  default ArticleDTO entityToDto(Article optional){
+    return ArticleDTO.builder()
+            .id(optional.getId())
+            .title(optional.getTitle())
+            .content(optional.getContent())
+            .build();
   }
 }
