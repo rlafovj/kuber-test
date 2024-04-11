@@ -17,23 +17,23 @@ insert into users (username, password, name, phone, address, job) values ('qwert
 INSERT INTO boards (board_name, board_type) values ('QnA', 'QnA');
 INSERT INTO boards (board_name, board_type) values ('Review', 'Review');
 
-INSERT INTO articles (title, content, writer)
-SELECT 'Child, The', 'sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at diam', users.id
-FROM users
-WHERE users.id = (SELECT id FROM users ORDER BY RAND() LIMIT 1);
-INSERT INTO articles (title, content, writer)
-SELECT 'Can i have?', 'Some Coffee? or any things?', users.id
-FROM users
-WHERE users.id = (SELECT id FROM users ORDER BY RAND() LIMIT 1);
-INSERT INTO articles (title, content, writer)
-SELECT 'Welcome to Seoul', 'Neo Seoul is best city in the world!', users.id
-FROM users
-WHERE users.id = (SELECT id FROM users ORDER BY RAND() LIMIT 1);
-INSERT INTO articles (title, content, writer)
-SELECT 'Docker is...', 'make human sick', users.id
-FROM users
-WHERE users.id = (SELECT id FROM users ORDER BY RAND() LIMIT 1);
-INSERT INTO articles (title, content, writer)
-SELECT 'Ola Amigos!', 'just kidding 저는 한국인이에요.', users.id
-FROM users
-WHERE users.id = (SELECT id FROM users ORDER BY RAND() LIMIT 1);
+INSERT INTO articles (title, content, writer, board_id)
+SELECT 'Child, The', 'sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at diam', users.id , boards.id
+FROM users , boards
+WHERE users.id = (SELECT id FROM users ORDER BY RAND() LIMIT 1) AND boards.id = (SELECT id FROM boards ORDER BY RAND() LIMIT 1);
+INSERT INTO articles (title, content, writer, board_id)
+SELECT 'Can i have?', 'Some Coffee? or any things?', users.id , boards.id
+FROM users , boards
+WHERE users.id = (SELECT id FROM users ORDER BY RAND() LIMIT 1) AND boards.id = (SELECT id FROM boards ORDER BY RAND() LIMIT 1);
+INSERT INTO articles (title, content, writer, board_id)
+SELECT 'Welcome to Seoul', 'Neo Seoul is best city in the world!', users.id , boards.id
+FROM users , boards
+WHERE users.id = (SELECT id FROM users ORDER BY RAND() LIMIT 1) AND boards.id = (SELECT id FROM boards ORDER BY RAND() LIMIT 1);
+INSERT INTO articles (title, content, writer, board_id)
+SELECT 'Docker is...', 'make human sick', users.id, boards.id
+FROM users , boards
+WHERE users.id = (SELECT id FROM users ORDER BY RAND() LIMIT 1) AND boards.id = (SELECT id FROM boards ORDER BY RAND() LIMIT 1);
+INSERT INTO articles (title, content, writer, board_id)
+SELECT 'Ola Amigos!', 'just kidding 저는 한국인이에요.', users.id, boards.id
+FROM users , boards
+WHERE users.id = (SELECT id FROM users ORDER BY RAND() LIMIT 1) AND boards.id = (SELECT id FROM boards ORDER BY RAND() LIMIT 1);

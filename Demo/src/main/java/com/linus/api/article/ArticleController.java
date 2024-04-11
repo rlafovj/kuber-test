@@ -34,10 +34,9 @@ public class ArticleController {
     service.save(param);
     return ResponseEntity.ok(new MessengerVO());
   }
-  @DeleteMapping("/{id}")
+  @DeleteMapping("/delete/{id}")
   public ResponseEntity<MessengerVO> deleteById(@PathVariable long id) throws SQLException {
-    service.deleteById(0L);
-    return ResponseEntity.ok(new MessengerVO());
+    return ResponseEntity.ok(service.deleteById(id));
   }
   @GetMapping("/list")
   public ResponseEntity<List<ArticleDTO>> findAll(){

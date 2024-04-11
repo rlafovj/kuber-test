@@ -72,10 +72,9 @@ public class UserController {
     }
 
 
-    @GetMapping("/delete")
-    public ResponseEntity<MessengerVO> deleteUser(@RequestBody Map<?, ?> paramap) {
-
-        return ResponseEntity.ok(new MessengerVO());
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<MessengerVO> deleteById(@PathVariable long id) throws SQLException {
+        return ResponseEntity.ok(service.deleteById(id));
     }
 
 
