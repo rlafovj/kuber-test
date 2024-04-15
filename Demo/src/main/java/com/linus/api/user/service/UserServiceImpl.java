@@ -49,7 +49,9 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public MessengerVO login(UserDTO param) {
-    throw new UnsupportedOperationException("Unimplemented method 'login'");
+    return MessengerVO.builder()
+            .message(findUserByUsername(param.getUsername()).map(User::getPassword).orElse("비밀번호가 일치하지 않습니다.").equals(param.getPassword()) ? "SUCCESS" : "로그인 실패")
+            .build();
   }
 
   @Override
