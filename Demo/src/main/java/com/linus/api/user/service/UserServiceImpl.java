@@ -1,5 +1,6 @@
 package com.linus.api.user.service;
 
+import com.linus.api.common.component.JwtProvider;
 import com.linus.api.common.component.MessengerVO;
 import com.linus.api.common.component.PageRequestVO;
 import com.linus.api.user.model.User;
@@ -17,7 +18,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
   private final UserRepository repo;
-
+  private final JwtProvider jwtProvider;
 
   @Override
   public MessengerVO save(UserDTO dto) {
@@ -49,8 +50,12 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public MessengerVO login(UserDTO param) {
+
+    boolean flag = repo.findByUsername(param.getUsername()).get().getPassword().equals(param.getPassword());
+
     return MessengerVO.builder()
-            .message(findUserByUsername(param.getUsername()).map(User::getPassword).orElse("비밀번호가 일치하지 않습니다.").equals(param.getPassword()) ? "SUCCESS" : "로그인 실패")
+            .message(flag ? "SUCCESS" : "FAIL")
+            .token(flag ? jwtProvider.createToken(param) : "None")
             .build();
   }
 

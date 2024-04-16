@@ -29,3 +29,7 @@ logging:
       hibernate:
         SQL: debug
         type: trace
+jwt:
+  iss: linus.com
+  exp: 3600
+  secret: linuslinuslinuslinuslinuslinuslinuslinuslinuslinuslinuslinuslinuslinuslinuslinuslinuslinuslinuslinuslinuslinus

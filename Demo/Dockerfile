@@ -1,5 +1,5 @@
 FROM gradle:jdk17-alpine AS builder
-COPY --chown=gradle:gradle . /gradle/
+COPY --chown=gradle:gradle src /gradle/
 WORKDIR /gradle
 RUN gradle build --no-daemon
 
